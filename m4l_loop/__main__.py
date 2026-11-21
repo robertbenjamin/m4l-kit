@@ -84,6 +84,8 @@ def cmd_build(dev):
 
 
 def cmd_ref(dev, zoom, theme):
+    if hasattr(dev, 'L'):
+        dev.L.write_js()
     return capture.render_reference(os.path.join(dev.DIR, dev.REFERENCE), dev.WIDTH, dev.HEIGHT, zoom, theme,
                                     os.path.join(dev.OUT, 'ref.png'))
 

@@ -329,10 +329,12 @@ html.lk-ref .lk-ref-target{position:fixed;left:0;top:0;padding:0;z-index:2147483
 })();
 
 </script>
+<script src="layout.js"></script>
 <script>
 (function(){
-  var DEF={drive:0.1,out:1}, state={drive:DEF.drive,out:DEF.out,auto:false}, DOM0=1.5, SIG=0.5, W=131;
-  var PAIR=[39.5,91.5];
+  var E=LAYOUT.elements;
+  var DEF={drive:0.1,out:1}, state={drive:DEF.drive,out:DEF.out,auto:false}, DOM0=1.5, SIG=0.5, W=LAYOUT.width;
+  var PAIR=[E.drive.cx,E.output.cx];
 
   function driveGain(a){return 100*a*a;}
   function shaper(x){x=Math.max(-1,Math.min(1,x));return x-Math.pow(x,5)*0.1768;}
@@ -355,7 +357,7 @@ html.lk-ref .lk-ref-target{position:fixed;left:0;top:0;padding:0;z-index:2147483
       d.svg('<polyline points="'+q.join(' ')+'" style="fill:none;stroke:var(--orange);stroke-width:1.5;stroke-linecap:round"/>');
     });
   }
-  function meter(d,y,h,L){var o=LiveKit.ref?-120:toDb(L.out);d.meter({x:112,y:y,h:h,peak:o,rms:o-3});}
+  function meter(d,L){var o=LiveKit.ref?-120:toDb(L.out),r=E.meter.rect;d.meter({x:r[0],y:r[1],h:r[3],peak:o,rms:o-3});}
   function makeupDb(L){return state.auto?fmt(L.comp):'0.0 dB';}
   function band(cap){return [{key:'drive',cx:PAIR[0],cap:cap,label:'Drive'},{key:'out',cx:PAIR[1],cap:cap,label:'Output'}];}
 
@@ -365,13 +367,14 @@ html.lk-ref .lk-ref-target{position:fixed;left:0;top:0;padding:0;z-index:2147483
     d.text(123,98.5,makeupDb(L),{align:'right',color:state.auto?'text-axis':'text-dim'});
   }
   var LAYOUTS={
-    l:{dials:band(120),tog:{x:70,y:96,w:53,h:13},
+    l:{dials:band(E.drive.cap),tog:{x:E.makeup.rect[0],y:E.makeup.rect[1],w:E.makeup.rect[2],h:E.makeup.rect[3]},
       draw:function(d,L){
-        d.display(4,4,W-8,109);
-        curve(d,8,8,100,84);meter(d,8,84,L);
-        d.led(14.5,102.5,clipping(L));
-        d.text(22,98.5,'Clip',{color:'text-dim'});
-        d.button(70,96,53,'Makeup',state.auto?'on':'outline');
+        var c=E['clip label'],m=E.makeup.rect;
+        d.display.apply(d,E.display.rect);
+        curve.apply(null,[d].concat(E.curve.rect));meter(d,L);
+        d.led(E['clip light'].cx,E['clip light'].cy,clipping(L));
+        d.text(c.x,c.cap,c.text,{color:'text-dim'});
+        d.button(m[0],m[1],m[2],E.makeup.text,state.auto?'on':'outline');
       }}
   };
 
