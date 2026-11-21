@@ -68,7 +68,7 @@ The Mackity example is styled with a companion design system: [Live Device Kit](
 ```
 m4l_loop/          the tool (python -m m4l_loop)
 remote_script/     M4LLoop, the Live remote script
-examples/mackity/  a complete example: spec, display script, design page, reference
+examples/mackity/  a complete example: spec, display script, design page
 docs/              guides
 .claude/skills/    a Claude Code skill that runs the workflow
 ```

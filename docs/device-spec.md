@@ -7,7 +7,7 @@ A device spec is a Python file. `m4l-loop` imports it and reads these names:
 | `NAME` | yes | Device name: the `.amxd` file name and the name Live shows |
 | `WIDTH` | yes | Device width in px at 100 % (Max `devicewidth`) |
 | `HEIGHT` | no | Body height, default 169 (every Live device) |
-| `REFERENCE` | yes | Design page, relative to the spec |
+| `REFERENCE` | yes | Design page, relative to the spec (opened with `?ref=1`) |
 | `ELEMENTS` | no | `{name: (x, y, w, h)}` boxes to measure one by one, in body px |
 | `JS` | no | `v8ui`/`jsui` scripts the device loads, copied into the `m4l-loop` Max package |
 | `EXTERNALS` | no | `.mxo` externals the device uses, copied into the same package |
@@ -39,7 +39,7 @@ See `examples/mackity/device.py` for a full device: audio, dials, a toggle, mete
 - show the device's **default state in silence**: default parameter values, empty meters, nothing that only appears with audio
 - paint everything else in `#ff00ff`, which m4l-loop crops away
 
-`examples/mackity/make_ref.py` shows one way to add this mode to an existing design page.
+Pages built with the [Live Device Kit](https://claude.ai/artifact/Uww7TVHaywVZU3KgZiKhMs) get this mode from the kit: `LiveKit.ref` is set, the first device draws alone, and the page only has to show its default state in silence while `LiveKit.ref` is set (see `examples/mackity/design.html`).
 
 ## The report
 `m4l-loop-out/<NAME>/report.json`:

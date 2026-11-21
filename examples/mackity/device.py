@@ -10,7 +10,7 @@ import os
 from m4l_loop.patch import Patch
 
 NAME = 'Mackity'
-REFERENCE = 'design.ref.html'
+REFERENCE = 'design.html'
 JS = ['mackity_display.js']
 EXTERNALS = [os.path.join(os.environ.get('AW_EXTERNALS', '~/Work/airwindows-m4l/dist/externals'), 'aw.mackity~.mxo')]
 WIDTH = 131
