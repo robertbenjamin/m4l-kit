@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 
 CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-SIDE_PAD = 2       # Live's device body is 2 px wider than its content on each side; none at the top
+SIDE_PAD = 2       # a Max device's body is 2 px wider than its content on each side (native devices: 0)
 ZOOMS = (1.0, 1.1, 1.25, 1.5, 1.75, 2.0)
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -45,7 +45,7 @@ def render_reference(page, width, height, zoom, theme, out):
     return ref
 
 
-def locate(win, render, out_dir):
+def locate(win, render, out_dir, side_pad=SIDE_PAD):
     """Find the device in the window at whichever zoom Live uses; returns (zoom, x, y, ref) with x, y the
     content origin in window px. The last zoom found is tried first."""
     zf = os.path.join(out_dir, 'zoom.txt')
@@ -64,11 +64,11 @@ def locate(win, render, out_dir):
     score, z, (x, y), ref = best
     open(zf, 'w').write(str(z))
     ref = render(2 * z)
-    x, y = content_origin(win, x, y, 2 * z)
+    x, y = content_origin(win, x, y, 2 * z, side_pad)
     return z, x, y, ref, score
 
 
-def content_origin(win, x, y, scale):
+def content_origin(win, x, y, scale, side_pad=SIDE_PAD):
     """Snap a rough match to the device's real edges by walking out through the plain body colour
     in the side pad and above the dial row, whatever the content looks like."""
     row = y + int(140 * scale)
@@ -80,4 +80,4 @@ def content_origin(win, x, y, scale):
     top = row
     while same(win[top - 1, left + 1]):
         top -= 1
-    return left + int(SIDE_PAD * scale), top
+    return left + int(side_pad * scale), top

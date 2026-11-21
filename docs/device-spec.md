@@ -11,6 +11,7 @@ A device spec is a Python file. `m4l-loop` imports it and reads these names:
 | `ELEMENTS` | no | `{name: (x, y, w, h)}` boxes to measure one by one, in body px |
 | `JS` | no | `v8ui`/`jsui` scripts the device loads, copied into the `m4l-loop` Max package |
 | `EXTERNALS` | no | `.mxo` externals the device uses, copied into the same package |
+| `NATIVE` | no | `True` to measure one of Live's own devices against a rebuild (no `build()` needed). Native bodies have no 2 px side margin |
 | `build()` | yes | Returns the patcher dict. Use `m4l_loop.patch.Patch` and `Patch.patcher()` |
 
 Coordinates: Max presentation coordinates equal the design's body coordinates: (0, 0) is the top-left corner of the body, under Live's title bar.

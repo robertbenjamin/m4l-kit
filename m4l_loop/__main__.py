@@ -90,7 +90,8 @@ def cmd_ref(dev, zoom, theme):
 
 def cmd_snap(dev, theme):
     win, _ = capture.screenshot(dev.OUT)
-    z, x, y, ref, score = capture.locate(win, lambda zoom: cmd_ref(dev, zoom, theme), dev.OUT)
+    side_pad = 0 if getattr(dev, 'NATIVE', False) else capture.SIDE_PAD
+    z, x, y, ref, score = capture.locate(win, lambda zoom: cmd_ref(dev, zoom, theme), dev.OUT, side_pad)
     h, w = ref.shape[:2]
     live_img = win[y:y + h, x:x + w]
     cv2.imwrite(os.path.join(dev.OUT, 'live.png'), live_img)
