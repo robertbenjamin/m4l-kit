@@ -299,8 +299,8 @@
  },
  "lastChange": {
   "by": "Robert Benjamin",
-  "at": "2026-11-22T05:30:00Z",
+  "at": "2026-11-22T17:30:00Z",
   "via": "Claude Code",
-  "note": "Building in Max corrected from Live measurements: presentation = body coordinates, live.dial offsets, panel background, stereo meters, live.comment rect, v8ui sizing, live.text border; text toggle verified"
+  "note": "Gain Comp naming, mapped state for display buttons (measured), Info View text guide, boost-only gains start at 0 dB. Source now in the live-device-kit repo."
  }
 }
