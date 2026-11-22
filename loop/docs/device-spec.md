@@ -40,7 +40,7 @@ See `examples/mackity/device.py` for a full device: audio, dials, a toggle, mete
 - show the device's **default state in silence**: default parameter values, empty meters, nothing that only appears with audio
 - paint everything else in `#ff00ff`, which m4l-loop crops away
 
-Pages built with the [Live Device Kit](https://claude.ai/artifact/Uww7TVHaywVZU3KgZiKhMs) get this mode from the kit: `LiveKit.ref` is set, the first device draws alone, and the page only has to show its default state in silence while `LiveKit.ref` is set (see `examples/mackity/design.html`).
+Pages built with the [Live Device Kit](../../kit) get this mode from the kit: `LiveKit.ref` is set, the first device draws alone, and the page only has to show its default state in silence while `LiveKit.ref` is set (see `examples/mackity/design.html`).
 
 ## The report
 `m4l-loop-out/<NAME>/report.json`:

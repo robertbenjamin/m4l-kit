@@ -32,7 +32,7 @@ design.html ──headless Chrome──▶ reference image                   ▼
 
 ## Quick start
 ```bash
-git clone https://github.com/robertbenjamin/m4l-loop && cd m4l-loop
+git clone https://github.com/robertbenjamin/m4l-kit && cd m4l-kit/loop
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m m4l_loop setup examples/mackity/device.py
 ```
@@ -69,7 +69,7 @@ When it's done, freeze it into one self-contained file to share, with its script
 | [Gotchas](docs/gotchas.md) | Live, Max, v8ui and capture facts that matter when matching pixels |
 | [Principles](docs/principles.md) | How to work so that every change is measured, not guessed |
 
-The Mackity example is styled with a companion design system: [Live Device Kit](https://claude.ai/artifact/Uww7TVHaywVZU3KgZiKhMs), which holds measured Live 12 layout, colour and behaviour rules.
+The Mackity example is styled with a companion design system: [Live Device Kit](../kit), which holds measured Live 12 layout, colour and behaviour rules.
 
 ## Layout
 ```
