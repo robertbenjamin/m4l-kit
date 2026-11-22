@@ -22,6 +22,7 @@ Facts that decide whether a device renders, loads or measures correctly. Verifie
 - `live.text`:
   - Draws its border 1 px inside its rect: make the rect 1 px larger on every side than the visible box.
   - `mode 1` is a toggle; `mode 0` is a momentary button.
+  - For a button in a display, use `appearance 2` (LCD) and leave its colours alone. Mapped to a Macro or MIDI, Live makes the control inactive, and only the LCD look greys itself out then, like Saturator's Color. Hand-set `bordercolor` stays orange when mapped.
 - `live.meter~`:
   - It is mono: a stereo meter is two of them.
   - It paints over anything beneath or above it, including `v8ui` and `panel` objects.

@@ -18,17 +18,28 @@ WIDTH = 131
 RING_DX = 23        # live.dial ring centre = rect x + 23 (measured in Live)
 DIAL_Y = 118.5      # dial rect y that puts the label cap at 120 (measured in Live)
 FONT = dict(fontname='Ableton Sans Small', fontsize=10.0, fontface=0)
-ORANGE = {'expression': 'themecolor.live_display_handle_one'}
-LCD_BG = {'expression': 'themecolor.live_lcd_bg'}
-LCD_TOGGLE = {k: ORANGE for k in ('bordercolor', 'focusbordercolor', 'textcolor', 'activetextcolor',
-                                   'bgoncolor', 'activebgoncolor')}
-LCD_TOGGLE.update(textoncolor=LCD_BG, activetextoncolor=LCD_BG)
+
+DESCRIPTION = ('Mackity emulates the input stage of a vintage Mackie 1202 (pre-VLZ) mixer: the spongy slam and '
+               'overload you get by driving a channel and patching out of its insert point. '
+               'DSP by Chris Johnson / Airwindows (MIT).')
+INFO = {
+    'Drive': 'Sets how hard the signal hits the input stage, like the channel\'s trim knob. '
+             'At 0 dB the sound stays close to clean. Higher values add slam, then heavy clipping.',
+    'Output': 'Adjusts the output level of the device. Turn it down to tame the extra level that Drive adds.',
+    'Gain Comp': 'When enabled, the output is lowered by the same amount that Drive raises the input. '
+                 'This lets you compare different Drive settings without a jump in level.',
+    'Output Meter': 'Shows the output level of the left and right channels.',
+}
+
+
+def info(name):
+    return dict(annotation_name=name, annotation=INFO[name])
 
 
 # boxes m4l-loop measures one by one, in design body px
 ELEMENTS = {
     'display': (2, 2, 127, 113), 'curve': (8, 8, 100, 84), 'meter': (110, 6, 15, 88),
-    'clip light': (10, 98, 9, 9), 'clip label': (21, 97, 20, 12), 'makeup': (68, 94, 57, 17),
+    'clip light': (10, 98, 9, 9), 'clip label': (21, 97, 20, 12), 'gain comp': (52, 94, 73, 17),
     'drive label': (24, 117, 31, 10), 'drive ring': (21, 127, 37, 30), 'drive value': (20, 151, 40, 12),
     'output label': (74, 117, 36, 10), 'output ring': (73, 127, 37, 30), 'output value': (72, 151, 40, 12),
 }
@@ -61,7 +72,7 @@ def build():
     # live.meter~ is mono and paints over anything near it: two bars, framed by a v8ui, no clip tick
     meters = [P.box(maxclass='live.meter~', numinlets=1, numoutlets=1, outlettype=['list'],
                     patching_rect=[800 + 10 * i, 60, 4, 82], presentation=1, bgcolor=[0, 0, 0, 0],
-                    presentation_rect=[113 + 5 * i, 9, 4, 82]) for i in (0, 1)]
+                    presentation_rect=[113 + 5 * i, 9, 4, 82], **info('Output Meter')) for i in (0, 1)]
     P.box(maxclass='v8ui', filename='mackity_display.js', jsarguments=['meterframe'], numinlets=1,
           numoutlets=1, outlettype=[''], border=0, ignoreclick=1, patching_rect=[820, 60, 11, 84],
           presentation=1, presentation_rect=[112, 8, 11, 84])
@@ -69,32 +80,32 @@ def build():
         P.connect(mk[i], 0, meters[i], 0)
 
     def param(long, short, rect, **va):
-        va.update(parameter_longname=long, parameter_shortname=short)
-        return P.box(maxclass='live.dial', varname=long, parameter_enable=1, numinlets=1, numoutlets=2,
+        va.update(parameter_longname=long, parameter_shortname=short, parameter_annotation_name=long)
+        return P.box(maxclass='live.dial', varname=long, **info(long), parameter_enable=1, numinlets=1, numoutlets=2,
                      outlettype=['', 'float'], patching_rect=[30 + 200 * len(P.params), 100, 48, 48],
                      presentation=1, presentation_rect=rect, saved_attribute_attributes={'valueof': va})
 
-    # exponent puts 0 dB at 10 % of the travel, where the design's raw default 0.1 sits
-    drive = param('Drive', 'Drive', [39.5 - RING_DX, DIAL_Y, 48, 48], parameter_type=0, parameter_mmin=-40.,
-                  parameter_mmax=40., parameter_initial=[0.001], parameter_initial_enable=1, parameter_unitstyle=4,
-                  parameter_exponent=0.30103)   # initial 0.001: the exponent round trip shows 0 as "-0.0 dB"
+    drive = param('Drive', 'Drive', [39.5 - RING_DX, DIAL_Y, 48, 48], parameter_type=0, parameter_mmin=0.,
+                  parameter_mmax=40., parameter_initial=[0.], parameter_initial_enable=1, parameter_unitstyle=4)
     out = param('Output', 'Output', [91.5 - RING_DX, DIAL_Y, 48, 48], parameter_type=0, parameter_mmin=-70.,
                 parameter_mmax=0., parameter_initial=[0.], parameter_initial_enable=1, parameter_unitstyle=4,
                 parameter_exponent=3.)
     P.params[drive] = ['Drive', 'Drive', 0]
     P.params[out] = ['Output', 'Output', 0]
-    makeup = P.box(maxclass='live.text', varname='Makeup', text='Makeup', texton='Makeup', mode=1,
+    # appearance 2 (LCD) greys itself out when inactive (macro-mapped), like Saturator's Color
+    makeup = P.box(maxclass='live.text', varname='Gain Comp', **info('Gain Comp'), text='Gain Comp',
+                   texton='Gain Comp', mode=1, appearance=2,
                    parameter_enable=1, numinlets=1, numoutlets=2, outlettype=['', ''],
                    patching_rect=[440, 100, 55, 15], presentation=1,
-                   # visible 53 x 13 at (70, 96): live.text draws its border 1 px inside its box, and
+                   # visible 69 x 13 at (54, 96): live.text draws its border 1 px inside its box, and
                    # native strip buttons pad their text ~8 px a side (Saturator's Color)
-                   presentation_rect=[69, 95, 55, 15],
-                   saved_attribute_attributes={'valueof': dict(parameter_longname='Makeup', parameter_shortname='Makeup',
+                   presentation_rect=[53, 95, 71, 15],
+                   saved_attribute_attributes={'valueof': dict(parameter_longname='Gain Comp', parameter_shortname='Gain Comp',
+                                                               parameter_annotation_name='Gain Comp',
                                                                parameter_type=2, parameter_enum=['off', 'on'],
                                                                parameter_mmax=1, parameter_initial=[0],
-                                                               parameter_initial_enable=1), **LCD_TOGGLE},
-                   bgcolor=[0, 0, 0, 0], activebgcolor=[0, 0, 0, 0], **FONT)
-    P.params[makeup] = ['Makeup', 'Makeup', 0]
+                                                               parameter_initial_enable=1)}, **FONT)
+    P.params[makeup] = ['Gain Comp', 'Gain Comp', 0]
 
     a = obj('expr pow(10.\\, ($f1 - 40.) / 40.)', [30, 200, 180, 20], 1, 1)
     P.connect(drive, 0, a, 0)
@@ -137,6 +148,6 @@ def build():
     lb = obj('loadbang', [440, 20, 60, 20], 1, 1, ['bang'])
     P.connect(lb, 0, drive, 0)
 
-    return P.patcher(WIDTH, description='Mackity by Airwindows: console-style saturation.',
+    return P.patcher(WIDTH, description=DESCRIPTION,
                      banks={'0': {'index': 0, 'name': 'Mackity',
-                                  'parameters': ['Drive', 'Output', 'Makeup', '-', '-', '-', '-', '-']}})
+                                  'parameters': ['Drive', 'Output', 'Gain Comp', '-', '-', '-', '-', '-']}})

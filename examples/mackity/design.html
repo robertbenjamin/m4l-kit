@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Mackity Device</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -54,7 +55,7 @@ html.lk-ref .lk-ref-target{position:fixed;left:0;top:0;padding:0;z-index:2147483
       <button id="t-light" data-th="light" aria-pressed="false">Light</button>
       <button id="t-light-cool" data-th="light-cool" aria-pressed="false">Light Cool</button>
     </div>
-    <p class="hint">Drag a dial up or down, Shift for fine. Double-click to reset. Click Makeup to switch it. Turn Drive up to see the band widen and Clip light.</p>
+    <p class="hint">Drag a dial up or down, Shift for fine. Double-click to reset. Click Gain Comp to switch it. Turn Drive up to see the band widen and Clip light.</p>
   </div>
 
   <div id="devices" class="th-dark">
@@ -68,8 +69,22 @@ html.lk-ref .lk-ref-target{position:fixed;left:0;top:0;padding:0;z-index:2147483
           <li><b>Curve</b> at (8, 8), 100 × 84: <code>v8ui</code>. Border, crosshair, teal band for the driven range, curve 1.5 px, clipped inside the border. 4 px from the meter.</li>
           <li><b>Meter</b> at (112, 8), 11 × 84: <code>live.meter~</code>, stereo, Output level.</li>
           <li><b>Clip</b> light centred at (14.5, 102.5), r 2.5, then "Clip" at x 22, as in Saturator. Saturator's teal, fading up from all but invisible (<code>led-off</code>) to <code>led-on</code>; the label stays dim.</li>
-          <li><b>Makeup</b> at (70, 96), 53 × 13: <code>live.text</code> toggle, LCD look, text padded 8 px a side like Saturator's Color. Outlined when off, orange when on. Default off.</li>
+          <li><b>Gain Comp</b> at (54, 96), 69 × 13: <code>live.text</code> toggle, LCD look. The label is 52.9 px in Ableton Sans Small 10, padded 8 px a side like Saturator's Color, right edge on the meter's (123). Outlined when off, orange when on. Default off.</li>
           <li><b>Drive</b> and <b>Output</b>: <code>live.dial</code>, ring centres at x 39.5 and 91.5 (52 apart), labels at cap 120.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="variant" style="grid-template-columns:1fr">
+      <div class="copy">
+        <h2>Info View text</h2>
+        <p class="tag">Shown on hover, as in Live's own devices · from Airwindopedia</p>
+        <ul>
+          <li><b>Mackity</b> (device): Mackity emulates the input stage of a vintage Mackie 1202 (pre-VLZ) mixer: the spongy slam and overload you get by driving a channel and patching out of its insert point. DSP by Chris Johnson / Airwindows (MIT).</li>
+          <li><b>Drive</b>: Sets how hard the signal hits the input stage, like the channel's trim knob. At 0 dB the sound stays close to clean. Higher values add slam, then heavy clipping.</li>
+          <li><b>Output</b>: Adjusts the output level of the device. Turn it down to tame the extra level that Drive adds.</li>
+          <li><b>Gain Comp</b>: When enabled, the output is lowered by the same amount that Drive raises the input. This lets you compare different Drive settings without a jump in level.</li>
+          <li><b>Output Meter</b>: Shows the output level of the left and right channels.</li>
         </ul>
       </div>
     </section>
@@ -78,9 +93,9 @@ html.lk-ref .lk-ref-target{position:fixed;left:0;top:0;padding:0;z-index:2147483
       <div class="copy">
         <h2>Behaviour</h2>
         <ul>
-          <li><b>Drive</b> (In Trim, A): gain (10·A)², shown as 40 + 40·log₁₀A dB. Default 0.100 = 0.0 dB.</li>
+          <li><b>Drive</b> (In Trim, A): 0 to +40 dB, linear in dB along the dial. 0 dB is In Trim 0.1 (unity), +40 dB is 1.0; gain (10·A)². Default 0.0 dB. Drive never cuts the input.</li>
           <li><b>Output</b> (Out Pad, B): gain B, shown as 20·log₁₀B dB. Default 1.000 = 0.0 dB.</li>
-          <li><b>Makeup</b> on: Output gets an extra 1 / Drive gain, so the level stays put as Drive goes up.</li>
+          <li><b>Gain Comp</b> on: Output gets an extra 1 / Drive gain, so the level stays put as Drive goes up.</li>
           <li><b>Clip</b>: brightness follows how far past Mackity's ±1 clamp the signal goes (dark at the clamp, full 6 dB past it). It lights at once and fades with a 0.3 s time constant, matching Saturator in Live. Exact clamp hits need a new outlet on <code>aw.mackity~</code>.</li>
           <li><b>Band</b>: the teal band shows the input range the signal covers right now. It follows the level with the same rise and fade, and is gone in silence.</li>
           <li><b>Zoom</b>: above 0 dB Drive the graph zooms out by the square root of the drive gain, as Saturator's does: each +6 dB pulls the clamp corner in by 3 dB and widens the band by 3 dB, so the band rarely pins. Measured against Saturator in Live.</li>
@@ -331,10 +346,10 @@ html.lk-ref .lk-ref-target{position:fixed;left:0;top:0;padding:0;z-index:2147483
 </script>
 <script>
 (function(){
-  var DEF={drive:0.1,out:1}, state={drive:DEF.drive,out:DEF.out,auto:false}, DOM0=1.5, SIG=0.5, W=131;
+  var DEF={drive:0,out:1}, state={drive:DEF.drive,out:DEF.out,auto:false}, DOM0=1.5, SIG=0.5, W=131;
   var PAIR=[39.5,91.5];
 
-  function driveGain(a){return 100*a*a;}
+  function driveGain(v){return Math.pow(10,2*v);}
   function shaper(x){x=Math.max(-1,Math.min(1,x));return x-Math.pow(x,5)*0.1768;}
   function toDb(g){return g>1e-6?20*Math.log10(g):-120;}
   function fmt(g){if(g<=1e-5)return '-inf dB';var d=toDb(g);if(Math.abs(d)<0.05)d=0;return d.toFixed(1)+' dB';}
@@ -365,13 +380,13 @@ html.lk-ref .lk-ref-target{position:fixed;left:0;top:0;padding:0;z-index:2147483
     d.text(123,98.5,makeupDb(L),{align:'right',color:state.auto?'text-axis':'text-dim'});
   }
   var LAYOUTS={
-    l:{dials:band(120),tog:{x:70,y:96,w:53,h:13},
+    l:{dials:band(120),tog:{x:54,y:96,w:69,h:13},
       draw:function(d,L){
         d.display(4,4,W-8,109);
         curve(d,8,8,100,84);meter(d,8,84,L);
         d.led(14.5,102.5,clipping(L));
         d.text(22,98.5,'Clip',{color:'text-dim'});
-        d.button(70,96,53,'Makeup',state.auto?'on':'outline');
+        d.button(54,96,69,'Gain Comp',state.auto?'on':'outline');
       }}
   };
 
@@ -426,8 +441,10 @@ html.lk-ref .lk-ref-target{position:fixed;left:0;top:0;padding:0;z-index:2147483
     });
   });
 
-  if(!LiveKit.ref){state.drive=0.16;state.auto=true;}
+  if(!LiveKit.ref){state.drive=0.25;state.auto=true;}
   drawAll();
   var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(drawAll,100);});
 })();
 </script>
+
+</body></html>
