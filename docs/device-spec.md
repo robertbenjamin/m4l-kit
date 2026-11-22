@@ -10,7 +10,7 @@ A device spec is a Python file. `m4l-loop` imports it and reads these names:
 | `REFERENCE` | yes | Design page, relative to the spec (opened with `?ref=1`) |
 | `ELEMENTS` | no | `{name: (x, y, w, h)}` boxes to measure one by one, in body px |
 | `JS` | no | `v8ui`/`jsui` scripts the device loads, copied into the `m4l-loop` Max package |
-| `EXTERNALS` | no | `.mxo` externals the device uses, copied into the same package |
+| `EXTERNALS` | no | Externals the device uses: `.mxo` (macOS, installed into the package for testing) and `.mxe64` (Windows x64, used only by `freeze`). List both, so a frozen device works on Mac and Windows |
 | `NATIVE` | no | `True` to measure one of Live's own devices against a rebuild (no `build()` needed). Native bodies have no 2 px side margin |
 | `build()` | yes | Returns the patcher dict. Use `m4l_loop.patch.Patch` and `Patch.patcher()` |
 

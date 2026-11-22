@@ -12,7 +12,8 @@ from m4l_loop.patch import Patch
 NAME = 'Mackity'
 REFERENCE = 'design.html'
 JS = ['mackity_display.js']
-EXTERNALS = [os.path.join(os.environ.get('AW_EXTERNALS', '~/Work/airwindows-m4l/dist/externals'), 'aw.mackity~.mxo')]
+_EXT = os.environ.get('AW_EXTERNALS', '~/Work/airwindows-m4l/dist/externals')
+EXTERNALS = [os.path.join(_EXT, 'aw.mackity~.mxo'), os.path.join(_EXT, 'aw.mackity~.mxe64')]   # macOS, Windows x64
 WIDTH = 131
 RING_DX = 23        # live.dial ring centre = rect x + 23 (measured in Live)
 DIAL_Y = 118.5      # dial rect y that puts the label cap at 120 (measured in Live)

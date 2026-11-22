@@ -3,7 +3,8 @@ Max freezes devices, so it loads on a machine without the externals or scripts i
 
 Layout: 'ampf' header, then a 'ptch' chunk holding an 'mx@c' container: a 16-byte header, the files back to
 back, and a 'dlst' directory of 'dire' entries (type, name, size, offset, flags, date). A macOS external is
-stored as four entries: a marker plus the bundle's zip, executable and Info.plist."""
+stored as four entries: a marker plus the bundle's zip, executable and Info.plist; a Windows x64
+external (.mxe64) is one entry. Ship both so the device loads on either system."""
 import copy, io, json, os, plistlib, struct, time, zipfile
 
 MXO_MARKER = b'\x00\x00\x00\xd0'
@@ -36,13 +37,17 @@ def mxo_parts(path):
     return exe, plist, buf.getvalue()
 
 
+def ext_type(path):
+    return b'mx64' if path.endswith('.mxe64') else b'iLaX'
+
+
 def freeze(patch, name, out, scripts=(), externals=(), device_type=b'aaaa'):
     """patch: the device's patcher dict. scripts: .js paths. externals: .mxo bundle paths."""
     patch = copy.deepcopy(patch)
     p = patch['patcher']
     p['dependency_cache'] = (
         [{'name': os.path.basename(s), 'bootpath': os.path.dirname(s), 'type': 'TEXT', 'implicit': 1} for s in scripts]
-        + [{'name': os.path.basename(e.rstrip('/')), 'type': 'iLaX'} for e in externals])
+        + [{'name': os.path.basename(e.rstrip('/')), 'type': ext_type(e).decode()} for e in externals])
     p['project']['contents'] = {
         'patchers': {},
         'code': {os.path.basename(s): {'kind': 'javascript', 'local': 1} for s in scripts},
@@ -51,6 +56,9 @@ def freeze(patch, name, out, scripts=(), externals=(), device_type=b'aaaa'):
     files = [(name + '.amxd', b'JSON', json.dumps(patch, indent='\t').encode('utf8') + b'\n\x00', 17)]
     files += [(os.path.basename(s), b'TEXT', open(s, 'rb').read(), 0) for s in scripts]
     for e in externals:
+        if e.endswith('.mxe64'):
+            files.append((os.path.basename(e), b'mx64', open(e, 'rb').read(), 0))
+            continue
         stem = os.path.basename(e.rstrip('/'))[:-4]
         exe, plist, zipped = mxo_parts(e)
         files += [(stem + '.mxo', b'iLaX', MXO_MARKER, 0), (stem + '/zipfile', b'\x00' * 4, zipped, 0),

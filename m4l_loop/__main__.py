@@ -44,6 +44,8 @@ def install_assets(dev):
     """Externals and JS go into a Max package, where Max finds them. Max only indexes new files at
     launch, so a file added for the first time needs one Live restart."""
     for src in files(dev, 'EXTERNALS'):
+        if not src.endswith('.mxo'):      # Windows builds are only for freezing
+            continue
         dst = os.path.join(live.PKG, 'externals', os.path.basename(src))
         if not os.path.exists(src):
             print('  missing external (build it first):', src)

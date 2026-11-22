@@ -49,6 +49,7 @@ Facts that decide whether a device renders, loads or measures correctly. Verifie
 
 ## Freezing
 - A frozen `.amxd` is the patch plus every file it uses, in Max's `mx@c` container. `freeze` writes the same layout Max does.
+- A device shared with Windows users needs the Windows build (`.mxe64`) frozen in next to the `.mxo`. Without it, Max on Windows reports the object as not found, in every Max version.
 - A macOS external is stored as four entries: a marker, a zip of the whole `.mxo` bundle, its executable and its `Info.plist`.
 - Max looks inside a frozen device before its search path. A script embedded this way loads even when no copy is installed.
 - Max keeps a loaded external in memory until Live quits, so testing inside a running Live proves nothing about an embedded external. Test without restarting Live like this:
