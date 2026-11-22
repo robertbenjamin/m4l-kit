@@ -1,0 +1,17 @@
+<!-- @dsCard group="Controls" height=120 subtitle="live.text with an SVG picture, recoloured by the theme: audition, link, Ø and the copied Live icons." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}</style></head>
+<body>
+<div id="r"></div>
+<script>
+(function(){
+var d=LiveKit.device(document.getElementById('r'),{w:104,h:30,title:false});
+d.toggle(8,8,22,'',false);d.icon(11,10,16,9,'/_blob/71544d12fc9f50954061099af52c4ff7','text');
+d.toggle(36,8,22,'',true);d.icon(39,10,16,9,'/_blob/deb61eb037eeb92376af3ad1a1e3a15a','on-toggle');
+d.toggle(64,8,13,'',true);d.icon(67,10,7,8,'/_blob/4cdaf1349e5a8960326f1b9556ed529a','on-toggle');
+d.toggle(83,8,13,'',false);d.icon(85.5,10.5,8,8,'/_blob/f642004026b4233e462bb5e85b990c0e','text');
+})();
+</script>
+</body>
+</html>

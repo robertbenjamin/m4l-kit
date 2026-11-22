@@ -1,0 +1,16 @@
+<!-- @dsCard group="Controls" height=170 subtitle="live.tab, one option per row: 43 x 13 buttons, 3 px apart (Compressor)." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}</style></head>
+<body>
+<div id="r"></div>
+<script>
+(function(){
+var d=LiveKit.device(document.getElementById('r'),{w:150,h:72,title:false});
+d.text(40,4,'Mode',{align:'center'});
+[['Peak',1],['RMS',0],['Expand',0]].forEach(function(b,i){var y=16+i*16;d.toggle(18,y,43,b[0],!!b[1]);});
+[['Standard',1],['Soft Clip',0],['True Peak',0]].forEach(function(b,i){var y=16+i*16;d.toggle(78,y,55,b[0],!!b[1]);});
+})();
+</script>
+</body>
+</html>

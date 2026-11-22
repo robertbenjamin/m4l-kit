@@ -1,0 +1,16 @@
+<!-- @dsCard group="Controls" height=150 subtitle="live.numbox: 45 x 13, unipolar and bipolar (Auto Pan-Tremolo)." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}</style></head>
+<body>
+<div id="r"></div>
+<script>
+(function(){
+var d=LiveKit.device(document.getElementById('r'),{w:120,h:60,title:false});
+d.text(60,4,'Att | Mod',{align:'center'});
+d.numbox(8,16,45,'191 ms',.372);d.numbox(8,34,45,'50 %',.5,{bipolar:true});
+d.numbox(64,16,45,'0.0 %',0);d.numbox(64,34,45,'-25 %',-.25,{bipolar:true});
+})();
+</script>
+</body>
+</html>

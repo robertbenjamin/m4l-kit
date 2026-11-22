@@ -1,0 +1,19 @@
+<!-- @dsCard group="Controls" height=420 subtitle="Erosion's band: the display ends at 95 and the band rises so the large dial's value fits; rings share one centre line." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);return LiveKit.device(c,o);}
+var d=dev({w:207});d.titleName('Large dial');
+d.display(4,4,199,91);
+d.dial({cx:42.5,cap:111,label:'Freq',value:'1.50 kHz',v:.6});
+d.dial({cx:103.5,cap:103.5,label:'Noise Blend',value:'60 %',v:.6,large:true});
+d.dial({cx:164.5,cap:111,label:'Amount',value:'82 %',v:.82});
+})();
+</script>
+</body>
+</html>

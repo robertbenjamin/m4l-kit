@@ -1,0 +1,25 @@
+<!-- @dsCard group="Display" height=260 subtitle="Graph over a strip: Clip light first, Gain Comp button last (Mackity, 131 px, after Saturator). Button states: off, on, mapped, mapped and on." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function shaper(x){x=Math.max(-1,Math.min(1,x));return x-Math.pow(x,5)*0.1768;}
+[[false,'outline'],[true,'on'],[false,'mapped'],[true,'mapped-on']].forEach(function(st){
+  var c=document.createElement('div');r.appendChild(c);
+  var d=LiveKit.device(c,{w:131,h:117,title:false});
+  d.display(4,4,123,109);
+  var pts=[];for(var i=0;i<=120;i++){var v=-1.5+3*i/120;pts.push([8+49+v/1.5*49,8+42-shaper(v)*36]);}
+  d.graph(8,8,98,84,pts,{under:function(g){g.rect(st[0]?17:41,9,st[0]?80:32,82,'teal-shade');}});
+  d.meter({x:112,y:8,h:84,peak:st[0]?-2:-8,rms:st[0]?-5:-11});
+  d.led(14.5,102.5,st[0]);
+  d.text(22,98.5,'Clip',{color:st[0]?'led-on':'text-dim'});
+  d.button(54,96,69,'Gain Comp',st[1]);
+});
+})();
+</script>
+</body>
+</html>

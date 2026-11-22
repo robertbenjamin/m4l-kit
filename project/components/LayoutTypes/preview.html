@@ -1,0 +1,21 @@
+<!-- @dsCard group="Foundations" height=520 subtitle="The six layout types, by where the display goes. Widths are the measured range; shown at 1x." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);var d=LiveKit.device(c,o);if(o.caption){var p=document.createElement('div');p.className='lk-cap';p.textContent=o.caption;c.appendChild(p);}return d;}
+function sk(name,w,f){var d=dev({w:w,zoom:1,caption:name});d.titleName(name.split(' ·')[0]);f(d);}
+sk('1 · Display over band · 207–251',227,function(d){d.display(4,4,219,109);[30.5,82.5,134.5,196.5].forEach(function(x){d.dial({cx:x,cap:120,v:.5});});});
+sk('2 · Display + mix column · 245–273',265,function(d){d.display(4,4,201,109);[30.5,82.5,134.5,180.5].forEach(function(x){d.dial({cx:x,cap:120,v:.5});});d.divider(209,4,161);[8,64,120].forEach(function(c){d.dial({cx:236.5,cap:c,v:.5});});});
+sk('3a · Full-height display · 268–586',284,function(d){[8,64,120].forEach(function(c){d.dial({cx:30.5,cap:c,v:.5});d.dial({cx:253.5,cap:c,v:.5});});d.display(57,4,170,161);});
+sk('3b · Centre display over band · 371–627',371,function(d){[8,64,120].forEach(function(c){d.dial({cx:30.5,cap:c,v:.5});d.dial({cx:340.5,cap:c,v:.5});});d.display(57,4,257,109);[90.5,142.5,194.5,246.5,288.5].forEach(function(x){d.dial({cx:x,cap:120,v:.5});});});
+sk('4 · Tiled · 443–585',443,function(d){d.el.style.background='var(--title)';d.tile(2,2,145,165);d.tile(149,2,145,165);d.tile(296,2,145,165);[74.5,221.5,368.5].forEach(function(x){d.dial({cx:x,cap:20,v:.5,large:true});});[[48.5,100.5],[195.5,247.5],[342.5,394.5]].forEach(function(p){d.dial({cx:p[0],cap:120,v:.5});d.dial({cx:p[1],cap:120,v:.5});});});
+sk('5 · Controls only · 139–147',139,function(d){d.dial({cx:35,cap:8,v:.5,large:true});d.dial({cx:104,cap:8,v:.5,large:true});d.divider(69,4,161);[35,104].forEach(function(x){d.dial({cx:x,cap:64,v:.5});d.dial({cx:x,cap:120,v:.5});});});
+})();
+</script>
+</body>
+</html>

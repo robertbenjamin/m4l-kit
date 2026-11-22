@@ -1,0 +1,18 @@
+<!-- @dsCard group="Display" height=290 subtitle="Phaser-Flanger: three 65 x 13 buttons at x 8 / 76 / 144, y 63 (3 px gaps), readouts under them." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);return LiveKit.device(c,o);}
+var d=dev({w:273,title:false,h:118});
+d.display(4,4,209,109);
+d.button(8,63,65,'Phaser','on');d.button(76,63,65,'Flanger','outline');d.button(144,63,65,'Doubler','outline');
+[[9,'Notches','29'],[60,'Center','769 Hz'],[111,'Spread','37 %'],[162,'Blend','0.62']].forEach(function(c){d.text(c[0],83.5,c[1],{color:'text-dim'});d.text(c[0]+1,97.5,c[2],{color:'orange'});});
+})();
+</script>
+</body>
+</html>

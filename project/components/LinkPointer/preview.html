@@ -1,0 +1,21 @@
+<!-- @dsCard group="Display" height=420 subtitle="Channel EQ: the display ends at 107, the triangle hangs from it over the Mid dial, notched dials sit at label cap 115.5." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);return LiveKit.device(c,o);}
+var d=dev({w:247});d.titleName('Pointer');
+d.display(4,4,239,103);
+d.hline(4,85,239);
+d.text(64.5,92.5,'1.20 kHz',{color:'orange'});
+d.pointer(86.5,106.5);
+[[36.5,'Low','0.0 dB',.5],[86.5,'Mid','+2.0 dB',.6],[136.5,'High','0.0 dB',.5],[210.5,'Output','0.0 dB',.5]].forEach(function(c){d.dial({cx:c[0],cap:115.5,label:c[1],value:c[2],v:c[3],bipolar:true,notch:true});});
+d.divider(173,111,56);
+})();
+</script>
+</body>
+</html>

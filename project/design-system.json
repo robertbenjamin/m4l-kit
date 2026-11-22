@@ -1,0 +1,306 @@
+{
+ "v": 3,
+ "layout": "files",
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-21T12:00:00Z"
+ },
+ "title": "Live Device Kit",
+ "namespace": "LiveKit",
+ "libraries": [],
+ "sections": {},
+ "groups": [
+  "Reference",
+  "Icons",
+  "Accuracy"
+ ],
+ "assetGroups": {
+  "Reference": {
+   "name": "Reference",
+   "tile": "l",
+   "order": [
+    "SaturatorL12.png",
+    "ChannelEQL12.png",
+    "AutoPanTremoloL12.png",
+    "ErosionL12.png",
+    "PhaserFlangerL12.png",
+    "ChorusEnsembleL12.png",
+    "LimiterL12.png",
+    "DelayEffectL12.png",
+    "EchoL12.png",
+    "AutoShiftL12.png",
+    "MultibandDynamicsL12.png",
+    "EQEightL12.png",
+    "DrumBussL12.png",
+    "CompressorL12.png",
+    "ShifterL12.png",
+    "HybridReverbL12.png",
+    "SpectralResonatorL12.png",
+    "SpectralTimeL12.png",
+    "AutoFilterL12.png",
+    "RoarL12.png",
+    "ReduxL12.png",
+    "UtilityL12.png",
+    "CompressorCollapsedL12.png",
+    "GlueL12.png"
+   ],
+   "files": {
+    "SaturatorL12.png": {
+     "name": "SaturatorL12.png",
+     "blob": "73a02bc06500a70183b597aa10b61a07",
+     "size": 31247,
+     "type": "image/png"
+    },
+    "ChannelEQL12.png": {
+     "name": "ChannelEQL12.png",
+     "blob": "65ca60cda680a1bc5c68f3bbaa6f8709",
+     "size": 36071,
+     "type": "image/png"
+    },
+    "AutoPanTremoloL12.png": {
+     "name": "AutoPanTremoloL12.png",
+     "blob": "2bbfdac06a5f40c40f59206fa92d1f72",
+     "size": 47143,
+     "type": "image/png"
+    },
+    "ErosionL12.png": {
+     "name": "ErosionL12.png",
+     "blob": "45a519e63a6a2a447ddafd26ec0c5aeb",
+     "size": 32171,
+     "type": "image/png"
+    },
+    "PhaserFlangerL12.png": {
+     "name": "PhaserFlangerL12.png",
+     "blob": "e82c01cdfbcff0c57f4b7c382441dfd3",
+     "size": 47692,
+     "type": "image/png"
+    },
+    "ChorusEnsembleL12.png": {
+     "name": "ChorusEnsembleL12.png",
+     "blob": "5a8ce1d8e27b9868d6ed2ba44f4dbd54",
+     "size": 54662,
+     "type": "image/png"
+    },
+    "LimiterL12.png": {
+     "name": "LimiterL12.png",
+     "blob": "4f9fc5f4462f5bb6949f8fb737ed17aa",
+     "size": 43974,
+     "type": "image/png"
+    },
+    "DelayEffectL12.png": {
+     "name": "DelayEffectL12.png",
+     "blob": "2665535392102a2a276188b2936f889c",
+     "size": 54010,
+     "type": "image/png"
+    },
+    "EchoL12.png": {
+     "name": "EchoL12.png",
+     "blob": "97ef98e8ad5a525ffd28061ba64cc3b4",
+     "size": 107378,
+     "type": "image/png"
+    },
+    "AutoShiftL12.png": {
+     "name": "AutoShiftL12.png",
+     "blob": "28d32bf1e193476ddaa580e8ce34afb1",
+     "size": 75077,
+     "type": "image/png"
+    },
+    "MultibandDynamicsL12.png": {
+     "name": "MultibandDynamicsL12.png",
+     "blob": "ab2a78e86fb381b47deadf023448eedc",
+     "size": 78698,
+     "type": "image/png"
+    },
+    "EQEightL12.png": {
+     "name": "EQEightL12.png",
+     "blob": "77e9ebe0595e5342b31d93ebd81189bf",
+     "size": 63392,
+     "type": "image/png"
+    },
+    "DrumBussL12.png": {
+     "name": "DrumBussL12.png",
+     "blob": "74c431a2b6615665e8b04ef66cb83bb7",
+     "size": 48304,
+     "type": "image/png"
+    },
+    "CompressorL12.png": {
+     "name": "CompressorL12.png",
+     "blob": "cafd8e11c19af6346d330b1dd1d13687",
+     "size": 65741,
+     "type": "image/png"
+    },
+    "ShifterL12.png": {
+     "name": "ShifterL12.png",
+     "blob": "5656d486e289b3b9e5d72077740d4723",
+     "size": 74811,
+     "type": "image/png"
+    },
+    "HybridReverbL12.png": {
+     "name": "HybridReverbL12.png",
+     "blob": "b95ed9dacd37fcb100cc4e0e90e71292",
+     "size": 124239,
+     "type": "image/png"
+    },
+    "SpectralResonatorL12.png": {
+     "name": "SpectralResonatorL12.png",
+     "blob": "60de86dfcb48e4c53ec59ceefa9268aa",
+     "size": 153939,
+     "type": "image/png"
+    },
+    "SpectralTimeL12.png": {
+     "name": "SpectralTimeL12.png",
+     "blob": "d0b35cec5957a4b59fc3d91b16a425ec",
+     "size": 173132,
+     "type": "image/png"
+    },
+    "AutoFilterL12.png": {
+     "name": "AutoFilterL12.png",
+     "blob": "ce474151b1d9e775d711dd385486b6ee",
+     "size": 75972,
+     "type": "image/png"
+    },
+    "RoarL12.png": {
+     "name": "RoarL12.png",
+     "blob": "f5e631aec0ffd07362b55c091ab35b2d",
+     "size": 90022,
+     "type": "image/png"
+    },
+    "ReduxL12.png": {
+     "name": "ReduxL12.png",
+     "blob": "13a78780223e7a40af53ffc05069aec7",
+     "size": 30062,
+     "type": "image/png"
+    },
+    "UtilityL12.png": {
+     "name": "UtilityL12.png",
+     "blob": "e29d68cc66723f83f603f33d95084302",
+     "size": 28688,
+     "type": "image/png"
+    },
+    "CompressorCollapsedL12.png": {
+     "name": "CompressorCollapsedL12.png",
+     "blob": "69404c1ce0d261fff46b46cc7b933427",
+     "size": 39961,
+     "type": "image/png"
+    },
+    "GlueL12.png": {
+     "name": "GlueL12.png",
+     "blob": "1265d845c73b690ae52ecee26864c212",
+     "size": 46577,
+     "type": "image/png"
+    }
+   }
+  },
+  "Accuracy": {
+   "name": "Accuracy",
+   "tile": "l",
+   "order": [
+    "rebuild-Saturator.png",
+    "rebuild-ChannelEQ.png",
+    "rebuild-AutoPanTremolo.png",
+    "kit-check.png",
+    "replica-light-Saturator.png",
+    "replica-light-ChannelEQ.png",
+    "replica-light-PhaserFlanger.png"
+   ],
+   "files": {
+    "kit-check.png": {
+     "name": "kit-check.png",
+     "blob": "0b9c7d19ef93a2d96669a33a1835460a",
+     "size": 43504,
+     "type": "image/png"
+    },
+    "replica-light-Saturator.png": {
+     "name": "replica-light-Saturator.png",
+     "blob": "2a0dfb0ff28f8149ac841c46912ad21c",
+     "size": 46810,
+     "type": "image/png"
+    },
+    "replica-light-ChannelEQ.png": {
+     "name": "replica-light-ChannelEQ.png",
+     "blob": "78c558e2ba1458ae3ded93c6562fad30",
+     "size": 56756,
+     "type": "image/png"
+    },
+    "replica-light-PhaserFlanger.png": {
+     "name": "replica-light-PhaserFlanger.png",
+     "blob": "30a80b3ba854b30654630964da0547fa",
+     "size": 78354,
+     "type": "image/png"
+    },
+    "rebuild-Saturator.png": {
+     "name": "rebuild-Saturator.png",
+     "blob": "047a24cbbf64c27f3ddc40c11c758c8c",
+     "size": 54493,
+     "type": "image/png"
+    },
+    "rebuild-ChannelEQ.png": {
+     "name": "rebuild-ChannelEQ.png",
+     "blob": "ff72fad97fd7d2f52c4609510b273ba7",
+     "size": 60916,
+     "type": "image/png"
+    },
+    "rebuild-AutoPanTremolo.png": {
+     "name": "rebuild-AutoPanTremolo.png",
+     "blob": "76af677b5a41292623a59d42adcff454",
+     "size": 85801,
+     "type": "image/png"
+    }
+   }
+  },
+  "Icons": {
+   "name": "Icons",
+   "tile": "s",
+   "order": [
+    "eq-filter-shape.svg",
+    "lfo-shape.svg",
+    "phase-invert.svg",
+    "swap-direction.svg",
+    "phase-offset-wave.svg"
+   ],
+   "files": {
+    "eq-filter-shape.svg": {
+     "name": "eq-filter-shape.svg",
+     "blob": "71544d12fc9f50954061099af52c4ff7",
+     "size": 8523,
+     "type": "image/svg+xml"
+    },
+    "lfo-shape.svg": {
+     "name": "lfo-shape.svg",
+     "blob": "deb61eb037eeb92376af3ad1a1e3a15a",
+     "size": 8782,
+     "type": "image/svg+xml"
+    },
+    "phase-invert.svg": {
+     "name": "phase-invert.svg",
+     "blob": "4cdaf1349e5a8960326f1b9556ed529a",
+     "size": 9856,
+     "type": "image/svg+xml"
+    },
+    "swap-direction.svg": {
+     "name": "swap-direction.svg",
+     "blob": "f642004026b4233e462bb5e85b990c0e",
+     "size": 6160,
+     "type": "image/svg+xml"
+    },
+    "phase-offset-wave.svg": {
+     "name": "phase-offset-wave.svg",
+     "blob": "77264a4e4ba62fd6d7b87e97d0d15ffb",
+     "size": 9660,
+     "type": "image/svg+xml"
+    }
+   }
+  }
+ },
+ "blobs": {},
+ "docs": {
+  "readme": "project/README.md",
+  "sections": []
+ },
+ "lastChange": {
+  "by": "Robert Benjamin",
+  "at": "2026-11-22T05:30:00Z",
+  "via": "Claude Code",
+  "note": "Building in Max corrected from Live measurements: presentation = body coordinates, live.dial offsets, panel background, stereo meters, live.comment rect, v8ui sizing, live.text border; text toggle verified"
+ }
+}

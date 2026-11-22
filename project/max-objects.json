@@ -1,0 +1,598 @@
+{
+ "source": "Live 12.4 bundled Max 9.1.5 m4l-ref docs + design/casestudy/inventory.py",
+ "elements": [
+  {
+   "code": "D",
+   "name": "Dial",
+   "object": "live.dial",
+   "settings": {
+    "appearance": "0 Vertical",
+    "showname": 1,
+    "shownumber": 1,
+    "needlemode": "0 Automatic"
+   },
+   "use": "A continuous value you play.",
+   "avoid": "The value is set once (number box) or shapes the picture (display value).",
+   "status": "verified",
+   "live_uses": 92,
+   "devices": [
+    "SpectralTime",
+    "HybridReverb",
+    "Echo",
+    "PhaserFlanger",
+    "ChorusEnsemble",
+    "SpectralResonator",
+    "AutoFilter",
+    "DrumBuss",
+    "Compressor",
+    "Shifter",
+    "Roar",
+    "Saturator",
+    "AutoPanTremolo",
+    "AutoShift",
+    "Erosion",
+    "Limiter",
+    "Delay",
+    "EQEight",
+    "Redux",
+    "Glue",
+    "MultibandDynamics"
+   ]
+  },
+  {
+   "code": "DN",
+   "name": "Notched dial",
+   "object": "live.dial",
+   "settings": {
+    "appearance": "0 Vertical",
+    "triangle": 1,
+    "needlemode": "2 Bipolar",
+    "placement": "4 px higher than a plain dial"
+   },
+   "use": "A ± value whose centre means \"unchanged\": gains, EQ bands, pan, width.",
+   "avoid": "Centre is not a resting point (LFO amount, bias): use needlemode 2 without the triangle.",
+   "status": "verified",
+   "live_uses": 15,
+   "devices": [
+    "ChannelEQ",
+    "MultibandDynamics",
+    "Utility",
+    "EQEight",
+    "DrumBuss",
+    "Shifter",
+    "Roar"
+   ]
+  },
+  {
+   "code": "DL",
+   "name": "Large dial",
+   "object": "live.dial",
+   "settings": {
+    "appearance": "3 Large (50 × 63 box, bigger than Live's 37 px ring) or a larger appearance-0 box",
+    "showname": 1,
+    "shownumber": 1
+   },
+   "use": "The control the device exists for; at most one per section, leading it.",
+   "avoid": "Two in one section, or a device with one band and ≤ 5 controls.",
+   "status": "docs",
+   "live_uses": 11,
+   "devices": [
+    "Roar",
+    "Redux",
+    "Glue",
+    "Erosion",
+    "Shifter",
+    "SpectralResonator",
+    "AutoFilter"
+   ]
+  },
+  {
+   "code": "DS",
+   "name": "Stepped dial",
+   "object": "live.dial + live.comment",
+   "settings": {
+    "parameter": "enum (parameter_type 2) with the steps",
+    "labels": "live.comment per step around the ring"
+   },
+   "use": "A few fixed steps that read like hardware (Glue attack/ratio, Limiter lookahead).",
+   "avoid": "More than about 7 steps (menu) or no hardware precedent.",
+   "status": "custom",
+   "live_uses": 4,
+   "devices": [
+    "Glue",
+    "Limiter"
+   ]
+  },
+  {
+   "code": "NB",
+   "name": "Number box",
+   "object": "live.numbox",
+   "settings": {
+    "appearance": "2 Slider",
+    "size": "45 × 13"
+   },
+   "use": "A continuous value you set, or one that refines a dial (Fine, Trim, Window); columns that would overflow with dials.",
+   "avoid": "The device's main controls.",
+   "status": "verified",
+   "live_uses": 35,
+   "devices": [
+    "SpectralResonator",
+    "AutoShift",
+    "Roar",
+    "Shifter",
+    "MultibandDynamics",
+    "EQEight",
+    "DrumBuss",
+    "SpectralTime",
+    "AutoFilter",
+    "AutoPanTremolo",
+    "Echo",
+    "HybridReverb",
+    "Redux",
+    "Utility"
+   ]
+  },
+  {
+   "code": "NBB",
+   "name": "Bipolar number box",
+   "object": "live.numbox",
+   "settings": {
+    "appearance": "3 Bipolar",
+    "size": "45 × 13"
+   },
+   "use": "A ± value you set (offsets, modulation depth, shift).",
+   "avoid": "A ± value you play: notched dial.",
+   "status": "docs",
+   "live_uses": 10,
+   "devices": [
+    "Delay",
+    "Echo",
+    "SpectralResonator",
+    "AutoPanTremolo",
+    "AutoShift",
+    "Shifter",
+    "Redux"
+   ]
+  },
+  {
+   "code": "NE",
+   "name": "Choice in a number box",
+   "object": "live.numbox",
+   "settings": {
+    "appearance": "2 Slider",
+    "parameter": "enum"
+   },
+   "use": "An ordered choice that reads like an amount (Hybrid Reverb Vintage: Off → Oldest).",
+   "avoid": "Unordered choices: menu.",
+   "status": "docs",
+   "live_uses": 1,
+   "devices": [
+    "HybridReverb"
+   ]
+  },
+  {
+   "code": "RO",
+   "name": "Display value",
+   "object": "live.numbox",
+   "settings": {
+    "appearance": "4 LCD",
+    "lcdbgcolor": "transparent",
+    "unit style": "Custom (e.g. \"%.0f %\", \"%.1f Hz\")"
+   },
+   "use": "A value that shapes the picture, placed inside the display next to it.",
+   "avoid": "Mix and output.",
+   "status": "verified",
+   "live_uses": 48,
+   "devices": [
+    "HybridReverb",
+    "PhaserFlanger",
+    "Delay",
+    "Echo",
+    "Shifter",
+    "AutoShift",
+    "MultibandDynamics",
+    "Compressor",
+    "Roar",
+    "AutoPanTremolo",
+    "Erosion",
+    "ChorusEnsemble",
+    "Limiter",
+    "AutoFilter",
+    "Saturator",
+    "ChannelEQ",
+    "DrumBuss",
+    "SpectralResonator"
+   ]
+  },
+  {
+   "code": "H",
+   "name": "Graph handle",
+   "object": "v8ui",
+   "settings": {
+    "radius": "13 px outer, 1.5 px ring",
+    "grab": "9 px",
+    "writes": "two parameters (x, y)"
+   },
+   "use": "A point on the picture that edits two parameters (frequency and gain/width).",
+   "avoid": "A single value: display value or dial.",
+   "status": "verified",
+   "live_uses": 6,
+   "devices": [
+    "Erosion",
+    "Delay",
+    "Echo",
+    "AutoShift",
+    "EQEight",
+    "AutoFilter"
+   ]
+  },
+  {
+   "code": "T",
+   "name": "Text toggle",
+   "object": "live.text",
+   "settings": {
+    "mode": "1 Toggle",
+    "appearance": "0 Default",
+    "outputmode": "1 Mouse up"
+   },
+   "use": "On/off on the body, named by what it switches on (Auto, Ping Pong, Mono).",
+   "avoid": "View or audition switches (icon toggle); enabling a section (checkbox).",
+   "status": "verified",
+   "live_uses": 48,
+   "devices": [
+    "Utility",
+    "MultibandDynamics",
+    "Shifter",
+    "Echo",
+    "Delay",
+    "Compressor",
+    "Roar",
+    "Limiter",
+    "EQEight",
+    "SpectralResonator",
+    "SpectralTime",
+    "AutoFilter",
+    "Saturator",
+    "AutoPanTremolo",
+    "PhaserFlanger",
+    "ChorusEnsemble",
+    "AutoShift",
+    "DrumBuss",
+    "HybridReverb",
+    "Redux",
+    "Glue"
+   ]
+  },
+  {
+   "code": "TI",
+   "name": "Icon toggle",
+   "object": "live.text",
+   "settings": {
+    "mode": "1 Toggle",
+    "usepicture": 1,
+    "pictures": "SVG",
+    "usesvgviewbox": 1,
+    "remapsvgcolors": 1
+   },
+   "use": "Audition, spectrum, sidechain, link and freeze switches; Ø next to a dial.",
+   "avoid": "When a word is clearer than an icon.",
+   "status": "docs",
+   "live_uses": 23,
+   "devices": [
+    "Roar",
+    "Delay",
+    "AutoShift",
+    "EQEight",
+    "AutoFilter",
+    "ChannelEQ",
+    "AutoPanTremolo",
+    "Erosion",
+    "PhaserFlanger",
+    "Echo",
+    "MultibandDynamics",
+    "DrumBuss",
+    "Compressor",
+    "HybridReverb",
+    "Utility"
+   ]
+  },
+  {
+   "code": "TL",
+   "name": "Checkbox",
+   "object": "live.toggle",
+   "settings": {
+    "appearance": "0 Default on the body, 1 LCD in a display",
+    "outputmode": "1 Mouse up"
+   },
+   "use": "Enabling a section or feature; its values dim when off. Also legends in a display (Compressor GR / Output).",
+   "avoid": "Switching a mode (text toggle or segmented).",
+   "status": "docs",
+   "live_uses": 14,
+   "devices": [
+    "AutoShift",
+    "Compressor",
+    "SpectralTime",
+    "Roar",
+    "ChorusEnsemble",
+    "Delay",
+    "Echo",
+    "EQEight",
+    "SpectralResonator"
+   ]
+  },
+  {
+   "code": "S",
+   "name": "Segmented pair",
+   "object": "live.tab",
+   "settings": {
+    "appearance": "0 Default",
+    "livemode": 1,
+    "mode": "0 Equal spaced",
+    "rows": 1
+   },
+   "use": "Two (sometimes three) short options side by side: 12 | 24, Pre | Post, Hz | ♪.",
+   "avoid": "Options that change the whole picture: mode buttons in the display.",
+   "status": "docs",
+   "live_uses": 11,
+   "devices": [
+    "Shifter",
+    "SpectralResonator",
+    "SpectralTime",
+    "ChorusEnsemble",
+    "Limiter",
+    "HybridReverb",
+    "AutoFilter",
+    "Redux"
+   ]
+  },
+  {
+   "code": "R",
+   "name": "Radio stack",
+   "object": "live.tab",
+   "settings": {
+    "appearance": "0 Default",
+    "livemode": 1,
+    "stacking": "one option per row (num_lines_presentation = N)"
+   },
+   "use": "Three to four device modes in a column (Peak / RMS / Expand).",
+   "avoid": "Five or more: menu.",
+   "status": "docs",
+   "live_uses": 12,
+   "devices": [
+    "Delay",
+    "SpectralTime",
+    "Limiter",
+    "Echo",
+    "AutoShift",
+    "DrumBuss",
+    "Compressor",
+    "Shifter",
+    "SpectralResonator"
+   ]
+  },
+  {
+   "code": "TAB",
+   "name": "Mode buttons",
+   "object": "live.tab",
+   "settings": {
+    "appearance": "1 LCD",
+    "livemode": 1
+   },
+   "use": "Two or three modes that change the whole picture, at the top of the display.",
+   "avoid": "Settings that leave the picture alone.",
+   "status": "docs",
+   "live_uses": 7,
+   "devices": [
+    "AutoPanTremolo",
+    "PhaserFlanger",
+    "ChorusEnsemble",
+    "Echo",
+    "AutoShift",
+    "HybridReverb",
+    "Roar"
+   ]
+  },
+  {
+   "code": "M",
+   "name": "Menu",
+   "object": "live.menu",
+   "settings": {
+    "appearance": "0 Default",
+    "pictures": "optional (EQ Eight filter shapes)"
+   },
+   "use": "Four or more choices on the body.",
+   "avoid": "A choice that belongs to the picture: chooser.",
+   "status": "docs",
+   "live_uses": 18,
+   "devices": [
+    "AutoFilter",
+    "Echo",
+    "EQEight",
+    "HybridReverb",
+    "Saturator",
+    "AutoPanTremolo",
+    "Shifter",
+    "SpectralResonator",
+    "SpectralTime",
+    "Roar",
+    "Utility"
+   ]
+  },
+  {
+   "code": "C",
+   "name": "Chooser",
+   "object": "live.menu",
+   "settings": {
+    "appearance": "1 LCD",
+    "triangle": "5 × 2.5 after the text"
+   },
+   "use": "A choice inside the display that the picture depends on (Scale, Algorithm, Routing, Lookahead).",
+   "avoid": "Choices unrelated to the picture.",
+   "status": "docs",
+   "live_uses": 13,
+   "devices": [
+    "Roar",
+    "AutoShift",
+    "HybridReverb",
+    "Saturator",
+    "AutoPanTremolo",
+    "ChorusEnsemble",
+    "Compressor",
+    "SpectralTime",
+    "AutoFilter"
+   ]
+  },
+  {
+   "code": "B",
+   "name": "Trigger",
+   "object": "live.text",
+   "settings": {
+    "mode": "0 Button",
+    "outputmode": "0 Mouse down for performance controls"
+   },
+   "use": "A one-shot action (Spectral Time Freeze, Drum Buss force-to-note).",
+   "avoid": "State you need to see afterwards: toggle.",
+   "status": "docs",
+   "live_uses": 2,
+   "devices": [
+    "DrumBuss",
+    "SpectralTime"
+   ]
+  }
+ ],
+ "other": [
+  {
+   "name": "Divider",
+   "object": "live.line",
+   "settings": {
+    "orientation": "vertical",
+    "note": "draws at the left edge of its rect"
+   },
+   "use": "Between control groups; behind the mix column.",
+   "status": "verified"
+  },
+  {
+   "name": "Label / section header",
+   "object": "live.comment",
+   "settings": {
+    "font": "Ableton Sans Small 10",
+    "colour": "dynamic",
+    "rect": "(text x − 4, cap − 5)"
+   },
+   "use": "Section names (Input, Smoothing, Mode) and display labels.",
+   "status": "docs"
+  },
+  {
+   "name": "Level meter",
+   "object": "live.meter~",
+   "settings": {
+    "orientation": "0 Vertical",
+    "mode": "0 deciBel",
+    "clip_size": "0 Normal",
+    "stereo": "two meters, 4 px wide, 1 px apart (it is mono)"
+   },
+   "use": "Inside a display only.",
+   "status": "docs"
+  },
+  {
+   "name": "Display ground",
+   "object": "panel",
+   "settings": {
+    "bgfillcolor": "themecolor.live_lcd_bg",
+    "rounded": 2,
+    "background": 1
+   },
+   "use": "Behind every display; the picture is a v8ui over the graph area only.",
+   "status": "verified"
+  },
+  {
+   "name": "Section tile",
+   "object": "panel",
+   "settings": {
+    "bgfillcolor": "body colour on the title-colour ground",
+    "rounded": 2
+   },
+   "use": "Tiled devices (type 4).",
+   "status": "docs"
+  },
+  {
+   "name": "Picture",
+   "object": "v8ui",
+   "settings": {
+    "colours": "max.getcolor live_* theme ids",
+    "size": "the design's size (Max rounds the box up)"
+   },
+   "use": "Curves, spectra, waves, segment meters.",
+   "status": "verified"
+  },
+  {
+   "name": "Prev / next arrows",
+   "object": "live.arrows",
+   "settings": {},
+   "use": "Browsing a list of files (Hybrid Reverb IR).",
+   "status": "docs"
+  },
+  {
+   "name": "File drop",
+   "object": "live.drop",
+   "settings": {},
+   "use": "Over a picture that accepts a dropped file (Hybrid Reverb IR).",
+   "status": "docs"
+  },
+  {
+   "name": "Fold-out arrow",
+   "object": "live.text + live.thisdevice",
+   "settings": {
+    "colours": "all transparent",
+    "glyph": "▶ / ◀",
+    "resize": "devicewidth 0, then setwidth"
+   },
+   "use": "Past about six controls; Live's title-bar arrow is not available to Max devices.",
+   "status": "verified"
+  }
+ ],
+ "no_audio_effect_precedent": [
+  {
+   "object": "live.slider",
+   "note": "Fader. No Live 12 audio effect uses one; gains are dials (Utility, Limiter)."
+  },
+  {
+   "object": "live.gain~",
+   "note": "Fader with a built-in meter. No audio-effect precedent: use a dial plus live.meter~ in a display."
+  },
+  {
+   "object": "live.grid, live.step",
+   "note": "Step sequencers. MIDI devices only."
+  },
+  {
+   "object": "live.scope~",
+   "note": "Waveform display. Allowed as a picture inside a display when a v8ui is not needed."
+  },
+  {
+   "object": "live.adsrui",
+   "note": "Envelope editor. Instruments only; an audio effect with an envelope uses dials (Auto Filter Envelope)."
+  },
+  {
+   "object": "live.button",
+   "note": "Bare flash dot. Live uses text buttons for triggers."
+  },
+  {
+   "object": "live.dial appearance 1 Tiny / 2 Panel",
+   "note": "No Live 12 audio-effect precedent."
+  }
+ ],
+ "not_available_to_max": [
+  {
+   "live": "Page tabs in the title bar (Echo, Hybrid Reverb, Roar)",
+   "instead": "live.tab at the top of the body, or a fold-out."
+  },
+  {
+   "live": "Expand arrow in the title bar (Saturator, Roar)",
+   "instead": "Fold-out arrow in the display row."
+  },
+  {
+   "live": "Vertical side panels (Auto Filter, Roar sidechain / MIDI)",
+   "instead": "A fold-out, or leave the feature out."
+  }
+ ]
+}

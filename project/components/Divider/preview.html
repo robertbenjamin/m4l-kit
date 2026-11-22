@@ -1,0 +1,21 @@
+<!-- @dsCard group="Structure" height=230 subtitle="Band divider (about 50 px, y 117) and column divider (near full height)." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);var d=LiveKit.device(c,o);if(o.caption){var p=document.createElement('div');p.className='lk-cap';p.textContent=o.caption;c.appendChild(p);}return d;}
+var d=dev({w:247});d.titleName('Divider');
+d.display(4,4,239,109);
+d.dial({cx:30.5,cap:120,label:'Low',value:'0.0 dB',v:.5,bipolar:true});
+d.dial({cx:82.5,cap:120,label:'Mid',value:'0.0 dB',v:.5,bipolar:true});
+d.dial({cx:134.5,cap:120,label:'High',value:'0.0 dB',v:.5,bipolar:true});
+d.divider(165,117,50);
+d.dial({cx:216.5,cap:120,label:'Output',value:'0.0 dB',v:.5,bipolar:true});
+})();
+</script>
+</body>
+</html>

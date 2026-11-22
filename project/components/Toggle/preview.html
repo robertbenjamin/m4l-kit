@@ -1,0 +1,19 @@
+<!-- @dsCard group="Controls" height=200 subtitle="Toggles beside a dial, tied to it by a 1 px connector (Phaser-Flanger Hz / Ø)." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);var d=LiveKit.device(c,o);if(o.caption){var p=document.createElement('div');p.className='lk-cap';p.textContent=o.caption;c.appendChild(p);}return d;}
+var d=dev({w:150});d.titleName('Toggle');
+d.dial({cx:30.5,cap:120,label:'Rate',value:'0.50 Hz',v:.3});
+d.toggle(60,128,20,'Hz',true);d.connector(44,60,134);
+d.dial({cx:110.5,cap:120,label:'Spread',value:'90°',v:.5});
+d.toggle(60,148,20,'Ø',false);
+})();
+</script>
+</body>
+</html>

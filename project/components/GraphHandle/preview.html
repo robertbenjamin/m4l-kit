@@ -1,0 +1,20 @@
+<!-- @dsCard group="Display" height=230 subtitle="A handle that edits two parameters, with both values in the strip next to the graph." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);var d=LiveKit.device(c,o);if(o.caption){var p=document.createElement('div');p.className='lk-cap';p.textContent=o.caption;c.appendChild(p);}return d;}
+var d=dev({w:227,title:false});
+d.display(4,4,219,109);
+var pts=[],x0=8,w=211;for(var i=0;i<=90;i++){var f=20*Math.pow(20,i/90),y=10/(1+Math.pow(Math.log2(f/120)*1.6,2));pts.push([x0+i/90*w,60-y*2.4]);}
+d.graph(x0,8,w,80,pts,{border:false,cross:false,under:function(g){g.freqGrid(x0,8,w,80,20,400,[[50,'50'],[100,'100'],[200,'200']]);}});
+var hx=x0+w*Math.log(120/20)/Math.log(20);d.handle(Math.round(hx)+.5,36);
+d.hline(4,92,219);d.inlineReadout(10,98.5,'Freq','120 Hz');d.inlineReadout(90,98.5,'Bump','4.0 dB');
+})();
+</script>
+</body>
+</html>

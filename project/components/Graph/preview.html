@@ -1,0 +1,20 @@
+<!-- @dsCard group="Display" height=230 subtitle="Boxed graph with crosshair (Saturator) and a log frequency grid (Channel EQ)." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);var d=LiveKit.device(c,o);if(o.caption){var p=document.createElement('div');p.className='lk-cap';p.textContent=o.caption;c.appendChild(p);}return d;}
+var d=dev({w:227,title:false});
+d.display(4,4,219,109);
+var pts=[];for(var i=0;i<=60;i++){var x=i/60*2-1;pts.push([12+i/60*100,58-Math.tanh(x*2.2)*40]);}
+d.graph(12,18,100,80,pts);
+var q=[];for(var j=0;j<=80;j++){var f=20*Math.pow(1000,j/80),y=-12/(1+Math.pow(f/200,2))+6/(1+Math.pow(3000/f,2));q.push([120+j/80*96,58-y*3]);}
+d.graph(120,18,96,80,q,{border:false,cross:false,under:function(g){g.freqGrid(120,18,96,80);g.hline(120,58,96,'grid-level');}});
+})();
+</script>
+</body>
+</html>
