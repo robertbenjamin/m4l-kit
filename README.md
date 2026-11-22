@@ -48,6 +48,11 @@ After that, iterate:
 ```
 Results are written to `m4l-loop-out/<Name>/`: `compare.png`, `report.json`, `live.png`, `ref.png`.
 
+When it's done, freeze it into one self-contained file to share:
+```bash
+.venv/bin/python -m m4l_loop freeze examples/mackity/device.py   # ~/Desktop/Mackity.amxd, scripts and externals inside
+```
+
 ## Your own device
 1. A **design page**: HTML that draws the device and supports `?ref=1&zoom=Z&theme=T` (see [the reference contract](docs/device-spec.md#the-reference-page)).
 2. A **device spec**: a `.py` file with `NAME`, `WIDTH`, `REFERENCE`, `ELEMENTS` and `build()` (see [docs/device-spec.md](docs/device-spec.md)). `m4l_loop.patch` writes the Max patch for you.

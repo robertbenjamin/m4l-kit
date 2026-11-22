@@ -8,6 +8,8 @@
   python -m m4l_loop watch  DEVICE      loop on every save of the device or its JS
   python -m m4l_loop record DEVICE SECONDS [--extra PTS]
                                         screen-record the device (plus PTS to its right)
+  python -m m4l_loop freeze DEVICE [--out PATH]
+                                        one self-contained .amxd with its scripts and externals inside
   python -m m4l_loop live '{"cmd": "state"}'
                                         send a raw command to the remote script
 
@@ -18,7 +20,7 @@ import argparse, importlib.util, json, os, shutil, sys, time
 
 import cv2
 
-from . import capture, compare, live, patch, trace
+from . import capture, compare, freeze, live, patch, trace
 
 OUT = os.path.abspath('m4l-loop-out')
 
@@ -117,6 +119,17 @@ def cmd_record(dev, seconds, extra):
     print('recorded', path, 'region', [round(v) for v in region])
 
 
+def cmd_freeze(dev, out):
+    out = os.path.expanduser(out or os.path.join('~/Desktop', dev.NAME + '.amxd'))
+    missing = [f for f in files(dev, 'EXTERNALS') + files(dev, 'JS') if not os.path.exists(f)]
+    if missing:
+        raise SystemExit('missing: ' + ', '.join(missing))
+    parts = freeze.freeze(dev.build(), dev.NAME, out, files(dev, 'JS'), files(dev, 'EXTERNALS'))
+    print('froze', out, f'({os.path.getsize(out) // 1024} KB)')
+    for name, size in parts:
+        print(f'  {name:32} {size:>9} bytes')
+
+
 def cmd_watch(dev, path, theme):
     watched = [path] + files(dev, 'JS')
     seen = {f: os.path.getmtime(f) for f in watched}
@@ -133,12 +146,13 @@ def cmd_watch(dev, path, theme):
 
 def main():
     ap = argparse.ArgumentParser(prog='m4l_loop', description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=['setup', 'build', 'ref', 'snap', 'loop', 'watch', 'record', 'live'])
+    ap.add_argument('cmd', choices=['setup', 'build', 'ref', 'snap', 'loop', 'watch', 'record', 'freeze', 'live'])
     ap.add_argument('target', help='device spec .py, or a JSON command for "live"')
     ap.add_argument('seconds', nargs='?', type=float, default=4)
     ap.add_argument('--theme', default='dark', choices=['dark', 'light', 'light-cool'])
     ap.add_argument('--zoom', type=float, default=2.0, help='ref: screen px per body px')
     ap.add_argument('--extra', type=float, default=0, help='record: screen points to include right of the device')
+    ap.add_argument('--out', help='freeze: output path, default ~/Desktop/NAME.amxd')
     a = ap.parse_args()
     if a.cmd == 'live':
         print(json.dumps(live.send(json.loads(a.target)), indent=1))
@@ -158,6 +172,8 @@ def main():
         cmd_snap(dev, a.theme)
     elif a.cmd == 'watch':
         cmd_watch(dev, a.target, a.theme)
+    elif a.cmd == 'freeze':
+        cmd_freeze(dev, a.out)
     elif a.cmd == 'record':
         cmd_record(dev, a.seconds, a.extra)
 

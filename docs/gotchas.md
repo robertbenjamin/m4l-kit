@@ -46,3 +46,9 @@ Facts that decide whether a device renders, loads or measures correctly. Verifie
 - Live's grid colour (`live_spectrum_grid_lines`) is translucent, so it tints whatever is under it.
 - Headless Chrome renders text at the same weight as Live but with softer edges. Expect a residual of 5–9 on text.
 - Video encoding shifts colours. Measure colours in stills, or relative to a known colour in the same video.
+
+## Freezing
+- A frozen `.amxd` is the patch plus every file it uses, in Max's `mx@c` container. `freeze` writes the same layout Max does.
+- A macOS external is stored as four entries: a marker, a zip of the whole `.mxo` bundle, its executable and its `Info.plist`.
+- Max looks inside a frozen device before its search path. A script embedded this way loads even when no copy is installed.
+- Max keeps a loaded external in memory until Live quits. To prove an embedded external works, test on a Mac without it installed, or after a restart with the installed copy removed.
