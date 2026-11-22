@@ -17,7 +17,7 @@ Ship only when every external says both.
 | System | External | Notes |
 |---|---|---|
 | macOS (Apple Silicon and Intel) | `.mxo` bundle, universal (`arm64` + `x86_64`) | Build with `-mmacosx-version-min=11.0` and ad-hoc sign it (`codesign --force --sign -`) |
-| Windows x64 | `.mxe64` DLL | Without it, Max on Windows reports the object as not found, in every Max version |
+| Windows x64 | `.mxe64` DLL | Without it, Max on Windows reports the object as not found, in every Max version. Built on a Mac as in §3, it loads and passes audio on Windows 11 (confirmed in Live 12 and the Live beta) |
 | Windows on ARM running native Live | ARM64 build | Not covered. Most Windows PCs run x64 |
 
 List both in the spec's `EXTERNALS`. `freeze` refuses to run while one is missing.
