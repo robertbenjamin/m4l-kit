@@ -78,3 +78,24 @@ def freeze(patch, name, out, scripts=(), externals=(), device_type=b'aaaa'):
     with open(out, 'wb') as f:
         f.write(head + b'ptch' + struct.pack('<I', len(container)) + container)
     return [(fname, len(data)) for fname, _, data, _ in files]
+
+
+def inspect(path):
+    """[(name, type, size)] of the files inside a frozen .amxd; [] if it isn't frozen."""
+    b = open(path, 'rb').read()
+    if b[32:36] != b'mx@c':
+        return []
+    d = 32 + struct.unpack('>I', b[44:48])[0]
+    end = d + struct.unpack('>I', b[d + 4:d + 8])[0]
+    q, out = d + 8, []
+    while q < end and b[q:q + 4] == b'dire':
+        n = struct.unpack('>I', b[q + 4:q + 8])[0]
+        e, r, f = b[q + 8:q + n], 0, {}
+        while r < len(e):
+            k, m = e[r:r + 4], struct.unpack('>I', e[r + 4:r + 8])[0]
+            f[k] = e[r + 8:r + m]
+            r += m
+        out.append((f[b'fnam'].rstrip(b'\x00').decode(), f[b'type'].decode(errors='replace').strip('\x00') or '-',
+                    struct.unpack('>I', f[b'sz32'])[0]))
+        q += n
+    return out

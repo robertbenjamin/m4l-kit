@@ -10,6 +10,7 @@
                                         screen-record the device (plus PTS to its right)
   python -m m4l_loop freeze DEVICE [--out PATH]
                                         one self-contained .amxd with its scripts and externals inside
+  python -m m4l_loop inspect FILE.amxd  list what a frozen device carries (and for which systems)
   python -m m4l_loop live '{"cmd": "state"}'
                                         send a raw command to the remote script
 
@@ -132,6 +133,19 @@ def cmd_freeze(dev, out):
         print(f'  {name:32} {size:>9} bytes')
 
 
+def cmd_inspect(path):
+    parts = freeze.inspect(path)
+    if not parts:
+        raise SystemExit(f'{path} is not frozen: its scripts and externals must be installed separately')
+    for name, kind, size in parts:
+        print(f'  {name:32} {kind:5} {size:>9} bytes')
+    names = [n for n, _, _ in parts]
+    mac = {n[:-4] for n in names if n.endswith('.mxo')}
+    win = {n[:-6] for n in names if n.endswith('.mxe64')}
+    for ext in sorted(mac | win):
+        print(f"  {ext}: {'macOS' if ext in mac else 'NO macOS'}, {'Windows' if ext in win else 'NO Windows'}")
+
+
 def cmd_watch(dev, path, theme):
     watched = [path] + files(dev, 'JS')
     seen = {f: os.path.getmtime(f) for f in watched}
@@ -148,7 +162,7 @@ def cmd_watch(dev, path, theme):
 
 def main():
     ap = argparse.ArgumentParser(prog='m4l_loop', description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=['setup', 'build', 'ref', 'snap', 'loop', 'watch', 'record', 'freeze', 'live'])
+    ap.add_argument('cmd', choices=['setup', 'build', 'ref', 'snap', 'loop', 'watch', 'record', 'freeze', 'inspect', 'live'])
     ap.add_argument('target', help='device spec .py, or a JSON command for "live"')
     ap.add_argument('seconds', nargs='?', type=float, default=4)
     ap.add_argument('--theme', default='dark', choices=['dark', 'light', 'light-cool'])
@@ -158,6 +172,9 @@ def main():
     a = ap.parse_args()
     if a.cmd == 'live':
         print(json.dumps(live.send(json.loads(a.target)), indent=1))
+        return
+    if a.cmd == 'inspect':
+        cmd_inspect(a.target)
         return
     dev = load(a.target)
     if a.cmd == 'setup':

@@ -47,14 +47,5 @@ Facts that decide whether a device renders, loads or measures correctly. Verifie
 - Headless Chrome renders text at the same weight as Live but with softer edges. Expect a residual of 5–9 on text.
 - Video encoding shifts colours. Measure colours in stills, or relative to a known colour in the same video.
 
-## Freezing
-- A frozen `.amxd` is the patch plus every file it uses, in Max's `mx@c` container. `freeze` writes the same layout Max does.
-- A device shared with Windows users needs the Windows build (`.mxe64`) frozen in next to the `.mxo`. Without it, Max on Windows reports the object as not found, in every Max version.
-- A macOS external is stored as four entries: a marker, a zip of the whole `.mxo` bundle, its executable and its `Info.plist`.
-- Max looks inside a frozen device before its search path. A script embedded this way loads even when no copy is installed.
-- Max keeps a loaded external in memory until Live quits, so testing inside a running Live proves nothing about an embedded external. Test without restarting Live like this:
-  1. Hide the installed copies.
-  2. Open the frozen file in a second, fresh Max: `open -n -g -a "/Applications/Ableton Live 12 Suite.app/Contents/App-Resources/Max/Max.app" Device.amxd`.
-  3. `lsof -p <its pid> | grep <name>` should show the external loaded from `~/Library/Application Support/Cycling '74/Max 9/Settings/temp64-Max/mxt/`, which is where Max unpacks it.
-  4. The Max Console should say "unfreeze complete".
-  5. Afterwards, quit that Max and delete the `~/Documents/Max 9/Max for Live Devices/<Name> Project` folder it creates.
+## Freezing and sharing
+See [sharing.md](sharing.md): cover macOS and Windows, build Windows externals on a Mac, and the tests that prove a frozen file is self-contained.

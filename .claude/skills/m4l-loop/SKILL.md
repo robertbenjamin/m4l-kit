@@ -10,3 +10,4 @@ description: Make a Max for Live device match its HTML design in a running Ablet
 5. When the device and the design disagree, measure the native device in the same capture (`native`, then `snap`). Fix the design if Live disagrees with it.
 6. Match motion with the same input, one device processing at a time, using `record` and `m4l_loop.trace`.
 7. Record new facts about Live in the design system, as neutral reference detail. Add new tooling facts to `docs/gotchas.md`.
+8. To share a device, follow `docs/sharing.md`: freeze it with both the macOS and the Windows external, check it with `inspect`, and prove it in a fresh Live with every installed copy and cache removed.

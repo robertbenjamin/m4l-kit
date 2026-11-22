@@ -48,9 +48,10 @@ After that, iterate:
 ```
 Results are written to `m4l-loop-out/<Name>/`: `compare.png`, `report.json`, `live.png`, `ref.png`.
 
-When it's done, freeze it into one self-contained file to share:
+When it's done, freeze it into one self-contained file to share, with its scripts and its macOS and Windows externals inside:
 ```bash
-.venv/bin/python -m m4l_loop freeze examples/mackity/device.py   # ~/Desktop/Mackity.amxd, scripts and externals inside
+.venv/bin/python -m m4l_loop freeze  examples/mackity/device.py   # ~/Desktop/Mackity.amxd
+.venv/bin/python -m m4l_loop inspect ~/Desktop/Mackity.amxd       # what's inside, and for which systems
 ```
 
 ## Your own device
@@ -64,6 +65,7 @@ When it's done, freeze it into one self-contained file to share:
 | [Workflow](docs/workflow.md) | The loop step by step, comparing against native devices, matching animation |
 | [Device spec](docs/device-spec.md) | Spec fields, the reference page contract, the report |
 | [Live control](docs/live-control.md) | Every remote-script command |
+| [Sharing](docs/sharing.md) | Freezing, covering macOS and Windows, building Windows externals on a Mac, proving a file is self-contained |
 | [Gotchas](docs/gotchas.md) | Live, Max, v8ui and capture facts that matter when matching pixels |
 | [Principles](docs/principles.md) | How to work so that every change is measured, not guessed |
 
