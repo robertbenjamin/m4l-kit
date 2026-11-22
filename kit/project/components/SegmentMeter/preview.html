@@ -1,0 +1,17 @@
+<!-- @dsCard group="Display" height=120 subtitle="Pan position strip: 2 banks of 26 cells, 3 x 7 on a 4 px pitch." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}</style></head>
+<body>
+<div id="r"></div>
+<script>
+(function(){
+var d=LiveKit.device(document.getElementById('r'),{w:250,h:24,title:false});
+d.display(3.5,0,243,24);
+var t=[],o=[];for(var i=0;i<26;i++){t.push({c:'teal',a:i<12?.215:.215+(i-12)/13*.6});o.push({c:'orange',a:i<5?.95-(i*.12):.215});}
+d.text(9.5,8.5,'L',{color:'teal'});d.text(234.5,8.5,'R',{color:'orange'});
+d.segments(20.5,8.5,t);d.segments(126.5,8.5,o);
+})();
+</script>
+</body>
+</html>

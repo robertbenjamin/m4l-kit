@@ -1,0 +1,20 @@
+<!-- @dsCard group="Display" height=120 subtitle="Indicator light in a display strip, off and lit (Saturator's light; Mackity's Clip)." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+[false,true].forEach(function(on){
+  var c=document.createElement('div');r.appendChild(c);
+  var d=LiveKit.device(c,{w:80,h:21,title:false});
+  d.display(4,0,72,17);
+  d.led(14.5,8.5,on);
+  d.text(22,4.5,'Clip',{color:on?'led-on':'text-dim'});
+});
+})();
+</script>
+</body>
+</html>

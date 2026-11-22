@@ -1,0 +1,21 @@
+<!-- @dsCard group="Foundations" height=420 subtitle="Body 169 px, 4 px margin, 109 px display, band at 120 / 130 / 156. Orange lines are guides, not UI." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);var d=LiveKit.device(c,o);if(o.caption){var p=document.createElement('div');p.className='lk-cap';p.textContent=o.caption;c.appendChild(p);}return d;}
+var d=dev({w:227});d.titleName('Grid');
+d.display(4,4,219,109);
+d.dial({cx:30.5,cap:120,label:'Drive',value:'6.0 dB',v:.4});
+d.dial({cx:82.5,cap:120,label:'Color',value:'0.0 %',v:0});
+d.dial({cx:134.5,cap:120,label:'Output',value:'0.0 dB',v:.5,bipolar:true});
+d.dial({cx:196.5,cap:120,label:'Dry/Wet',value:'100 %',v:1});
+d.guide(4).guide(113).guide(120).guide(130).guide(156);
+})();
+</script>
+</body>
+</html>

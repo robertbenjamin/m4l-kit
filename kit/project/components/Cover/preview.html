@@ -1,0 +1,28 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>
+body{margin:0;width:960px;height:288px;background:var(--outer);position:relative;overflow:hidden;font-family:var(--font-live)}
+.name{position:absolute;left:40px;bottom:64px;font-size:64px;line-height:.95;font-weight:700;color:var(--text);max-width:440px;letter-spacing:-.01em}
+.tag{position:absolute;left:40px;bottom:36px;font-size:13px;color:var(--text-axis);max-width:440px}
+svg{position:absolute;left:0;top:0}
+.body{fill:var(--body)}.disp{fill:var(--display)}.title{fill:var(--title)}.teal{fill:var(--teal)}.orange{fill:var(--orange)}
+.ring{fill:none;stroke:var(--ring);stroke-width:6}.lit{fill:none;stroke:var(--teal);stroke-width:6}.ptr{stroke:var(--pointer);stroke-width:5}
+.lito{fill:none;stroke:var(--orange);stroke-width:6}
+</style></head>
+<body>
+<svg width="960" height="288" viewBox="0 0 960 288">
+<!-- blocks: title (title-h ×4 = 68), body slab, display (radius-display ×4), orange power disc; arrangement: a device seen at 4x, title strip over body, display bleeding off the right edge -->
+<!-- pattern: dial rings (literal motif) on the 52 px dial-pitch ×4 grid, chosen because the dial is the one shape every Live device shares -->
+<!-- scales: module 56, margin 4 (×4 = 16 inset), radius-display 2 (×4 = 8), dial-stroke 2.2 (×~3) -->
+<rect class="title" x="480" y="0" width="480" height="68"/>
+<rect class="body" x="480" y="68" width="480" height="220"/>
+<rect class="disp" x="496" y="84" width="480" height="112" rx="8"/>
+
+<rect class="orange" x="496" y="24" width="20" height="20" rx="10"/>
+<g><path class="ring" d="M585.5 214.0A26 26 0 0 1 601.9 261.3"/><path class="lit" d="M572.1 261.3A26 26 0 0 1 576.8 216.1"/><line class="ptr" x1="587" y1="240" x2="575.2" y2="212.4"/><path class="ring" d="M714.8 229.5A26 26 0 0 1 705.9 261.3"/><path class="lit" d="M676.1 261.3A26 26 0 1 1 709.8 222.1"/><line class="ptr" x1="691" y1="240" x2="712.7" y2="219.3"/><path class="ring" d="M801.8 265.1A26 26 0 0 1 809.9 261.3"/><path class="lit" d="M780.1 261.3A26 26 0 1 1 809.9 261.3"/><line class="ptr" x1="795" y1="240" x2="812.2" y2="264.6"/><path class="ring" d="M882.9 219.6A26 26 0 1 1 913.9 261.3"/><path class="lito" d="M884.1 261.3A26 26 0 0 1 877.0 226.2"/><line class="ptr" x1="899" y1="240" x2="873.6" y2="224.1"/><path class="lit" d="M512 180 C 600 180, 640 118, 700 112 S 820 106, 960 106" style="stroke-width:3"/></g>
+</svg>
+<div class="name">Live Device Kit</div>
+<div class="tag">Live 12's device language, measured at 100 % zoom, for Max for Live.</div>
+</body>
+</html>

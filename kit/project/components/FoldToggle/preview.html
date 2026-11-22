@@ -1,0 +1,19 @@
+<!-- @dsCard group="Structure" height=200 subtitle="Native expand controls Max can copy: the disclosure triangle in a display (Delay, Echo) and the round button on the body (Auto Filter, Roar, Auto Shift)." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);return LiveKit.device(c,o);}
+var d=dev({w:227,h:40,title:false});
+d.display(4,4,219,32);
+d.fold(10,12,'right');d.text(20,11.5,'LFO');
+d.fold(90,12.5,'up');d.checkbox(103,11.5,9,true,'teal');d.text(116,11.5,'Filter',{color:'text-dim'});
+var e=dev({w:60,h:40,title:false});e.roundButton(11.5,10.5,'down');
+})();
+</script>
+</body>
+</html>

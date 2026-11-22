@@ -1,0 +1,19 @@
+<!-- @dsCard group="Display" height=260 subtitle="Compressor 12.2 meter view: In with threshold, GR from the top, Out with ceiling." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);var d=LiveKit.device(c,o);if(o.caption){var p=document.createElement('div');p.className='lk-cap';p.textContent=o.caption;c.appendChild(p);}return d;}
+var d=dev({w:139});d.titleName('Meter');
+d.display(4,4,131,161);
+d.meter({x:24,y:26,h:126,peak:-6,rms:-14,dimAbove:-16,marker:-16,label:'In',value:'-6.0'});
+d.meter({x:64,y:26,h:126,gr:5.6,label:'GR',value:'5.6'});
+d.meter({x:104,y:26,h:126,peak:-7.7,rms:-12,marker:-7.7,label:'Out',value:'-7.7',valueColor:'teal'});
+})();
+</script>
+</body>
+</html>

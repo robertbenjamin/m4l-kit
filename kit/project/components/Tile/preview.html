@@ -1,0 +1,21 @@
+<!-- @dsCard group="Structure" height=230 subtitle="Tiled devices: body-colour tiles on the title-colour ground, 2 px gutters (Auto Filter, Roar)." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);var d=LiveKit.device(c,o);if(o.caption){var p=document.createElement('div');p.className='lk-cap';p.textContent=o.caption;c.appendChild(p);}return d;}
+var d=dev({w:300,ground:'title'});d.titleName('Tiles');
+d.tile(2,2,147,165);d.tile(151,2,147,165);
+d.text(8,8,'Filter');d.text(157,8,'LFO');
+d.dial({cx:75.5,cap:22,label:'Freq',value:'1.00 kHz',v:.55,large:true});
+d.dial({cx:224.5,cap:22,label:'Amount',value:'30 %',v:.3,large:true});
+d.dial({cx:49.5,cap:120,label:'Res',value:'20 %',v:.2});d.dial({cx:101.5,cap:120,label:'Drive',value:'0.0 dB',v:0});
+d.dial({cx:198.5,cap:120,label:'Rate',value:'1.00 Hz',v:.4});d.dial({cx:250.5,cap:120,label:'Phase',value:'0°',v:0});
+})();
+</script>
+</body>
+</html>

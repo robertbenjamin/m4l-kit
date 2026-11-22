@@ -1,0 +1,20 @@
+<!-- @dsCard group="Controls" height=190 subtitle="9 x 9 to enable a section in a display (Delay, Echo), 7 x 7 for a legend (Compressor), 8 x 8 heading a body section (Spectral Time)." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}</style></head>
+<body>
+<div id="r"></div>
+<script>
+(function(){
+var r=document.getElementById('r');
+function dev(o){var c=document.createElement('div');r.appendChild(c);return LiveKit.device(c,o);}
+var d=dev({w:200,h:60,title:false});
+d.display(4,4,192,52);
+d.fold(10,11.5,'up');d.checkbox(23,10.5,9,true,'teal');d.text(36,10.5,'Filter',{color:'text-dim'});
+d.checkbox(10,30.5,7,true,'teal');d.text(21,30,'GR',{color:'text-axis'});
+d.checkbox(44,30.5,7,false,'teal');d.text(55,30,'Output',{color:'text-axis'});
+var e=dev({w:120,h:24,title:false});e.checkbox(4,4,8,true,'orange');e.text(16,4.5,'1 Freezer');e.checkbox(70,4,8,false,'orange');e.text(82,4.5,'2 Delay',{color:'text-dim'});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!-- @dsCard group="Controls" height=120 subtitle="live.text in button mode: a one-shot action (Spectral Time Freeze)." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}</style></head>
+<body>
+<div id="r"></div>
+<script>
+(function(){
+var d=LiveKit.device(document.getElementById('r'),{w:150,h:36,title:false});
+d.rect(8,6,74,24,'teal');d.text(45,14,'✱',{align:'center',color:'on-accent'});
+d.toggle(100,11,40,'Retrig',false);
+})();
+</script>
+</body>
+</html>

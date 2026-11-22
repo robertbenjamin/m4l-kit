@@ -1,0 +1,16 @@
+<!-- @dsCard group="Proof" height=860 subtitle="Built from LiveKit + tokens; only live data (curves, spectrum, icons) is traced. 98.3 / 97.0 / 98.7 % of pixels match the manual." -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--outer);font-family:var(--font-live)}.row{display:flex;flex-direction:column;gap:16px;align-items:flex-start}</style></head>
+<body>
+<div class="row"><div id="a"></div><div id="b"></div><div id="c"></div></div>
+<script src="./data.js"></script>
+<script>window.LK_ZOOM=2;</script>
+<script src="./replicas.js"></script>
+<script>
+REPLICAS.Saturator(document.getElementById('a'),227);
+REPLICAS.ChannelEQ(document.getElementById('b'),247);
+REPLICAS.AutoPanTremolo(document.getElementById('c'),250.5);
+</script>
+</body>
+</html>

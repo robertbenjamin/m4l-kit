@@ -1,0 +1,3 @@
+The 24 Live 12 audio effects from the Live 12 manual, at 100 % Live zoom, 2x pixels, Default Light Neutral theme. Each image is the title bar (first 34 px) plus the 169 px body. Divide pixel positions by 2 for body px, then subtract the 17 px title bar. These are Ableton's images, used as measuring references only.
+
+Grouped by layout type: 1 Saturator, Channel EQ, Auto Pan-Tremolo, Erosion; 2 Phaser-Flanger, Chorus-Ensemble; 3a Limiter, Delay, Echo, Auto Shift, Multiband Dynamics, EQ Eight, Drum Buss; 3b Compressor, Shifter, Hybrid Reverb, Spectral Resonator, Spectral Time; 4 Auto Filter, Roar; 5 Redux, Utility. Meter references: Compressor (meter view), Drum Buss, Limiter, Glue Compressor.
